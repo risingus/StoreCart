@@ -5,13 +5,15 @@ interface CartQuantityProps {
   quantity?: number;
 }
 
-export const Container = styled.div`
+export const Container = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
   padding: .5rem;
   transition: linear .2s;
   cursor: pointer;
+  background: transparent;
+  border: none;
 
   :hover {
     transform: scale(1.1);
@@ -19,7 +21,7 @@ export const Container = styled.div`
 `;
 
 export const CartIcon = styled(RiShoppingCartLine)`
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: ${({theme}) => theme.colors.main_light};
 `;
 

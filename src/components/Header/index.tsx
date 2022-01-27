@@ -1,10 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { useCartContext } from "../../hooks/useCartContext";
 import { CartButton } from "../CartButton";
+import { HomeButton } from "../HomeButton";
 import { ThemeButton } from "../ThemeButton";
 
 import { ActionsContainer, BrandTitle, Container } from "./styles";
-
-
 interface HeaderProps {
   changeTheme: () => void;
   isLightTheme: boolean;
@@ -15,15 +15,20 @@ export function Header({
   isLightTheme
 }: HeaderProps) {
   const {cart} = useCartContext();
+  const navigate = useNavigate();
 
   return (
     <Container>
-        <BrandTitle>
+        <BrandTitle onClick={() => navigate('/')}>
           GG Store
         </BrandTitle>
 
         <ActionsContainer>
-          <CartButton quantity={cart.length} />
+          <HomeButton onClick={() => navigate('/')} />
+          <CartButton 
+            quantity={cart.length}
+            onClick={() => navigate('/cart')}
+          />
           <ThemeButton  
             theme={isLightTheme}
             changeTheme={changeTheme}

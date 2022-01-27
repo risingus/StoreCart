@@ -22,8 +22,8 @@ interface ProductProps {
 }
 interface ContextProps {
   cart: Array<ProductProps>;
-  addOnCart: () => void;
-  removeOfCart: () => void;
+  addOnCart: (arg: ProductProps) => void;
+  removeOfCart: (arg: ProductProps) => void;
 }
 interface ContextContainerProps {
   children: ReactElement;
@@ -34,11 +34,11 @@ const CartContext = createContext<ContextProps>({} as ContextProps);
 export function CartContextProvider({children}: ContextContainerProps) {
   const [cart, setCart] = useState<ProductProps[]>([]);
 
-  function addOnCart() {
-
+  function addOnCart(product: ProductProps) {
+    console.log(product)
   }
 
-  function removeOfCart() {
+  function removeOfCart(product: ProductProps) {
 
   }
  

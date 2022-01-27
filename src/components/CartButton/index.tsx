@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom'
 import {
   Container,
   CartIcon,
@@ -8,17 +7,13 @@ import {
 
 interface CartButtonProps {
   quantity?: number;
+  onClick: () => void;
 }
 
-export function CartButton({quantity = 1}: CartButtonProps) {
-  const navigate = useNavigate();
-  
-  function goToCart() {
-    navigate('/cart')
-  }
+export function CartButton({quantity = 0, ...rest }: CartButtonProps) {
 
   return (
-    <Container onClick={goToCart}>
+    <Container {...rest}>
       <CartIcon />
       {
         quantity > 0 && (

@@ -19,7 +19,7 @@ export function ProductCard({product} : ProductCartProps) {
   const navigate = useNavigate();
 
   function goToProductDetails() {
-    navigate(`details${product.id}`);
+    navigate(`details${product.id}`, {state: product});
   }
 
   return (

@@ -38,6 +38,7 @@ export const ProductTitle = styled.span`
   font-family: ${({theme}) => theme.fonts.mid};
   color: ${({theme}) => theme.colors.text};
   font-size: 1.1rem;
+  text-transform: capitalize;
   width: 100%;
 
   @media (min-width: 672px) {

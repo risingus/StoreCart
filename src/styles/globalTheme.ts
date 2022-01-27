@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
 
     @font-face {
       font-family: 'Roboto';
-      src: url(Roboto-Medium.ttf) format('truetype');
+      src: url(Roboto-Regular.ttf) format('truetype');
     }
     
     @font-face {

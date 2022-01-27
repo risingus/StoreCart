@@ -7,7 +7,11 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 2rem;
+
+  @media (max-width: 510px) {
+    padding: 0.5rem;
+  }
 `;
 
 export const BrandTitle = styled.h1`
@@ -16,10 +20,15 @@ export const BrandTitle = styled.h1`
   color: ${({theme}) => theme.colors.main_light};
   font-size: 2rem;
   padding: 0 1rem;
+  cursor: pointer;
 `;
 
 export const ActionsContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 5rem;
+
+  @media (max-width: 510px) {
+    gap: 1rem;
+  }
 `;
