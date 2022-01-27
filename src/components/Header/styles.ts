@@ -6,7 +6,8 @@ export const Container = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 0.5rem;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
 `;
 
 export const BrandTitle = styled.h1`
@@ -18,5 +19,7 @@ export const BrandTitle = styled.h1`
 `;
 
 export const ActionsContainer = styled.div`
-
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 `;

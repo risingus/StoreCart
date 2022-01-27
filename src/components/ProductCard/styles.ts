@@ -5,14 +5,11 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: .5rem 2rem;
-  border-style: solid;
-  border-color: transparent;
   border-radius: .4rem;
-  border-width: 1px;
   transition: linear .2s;
+  cursor: pointer;
 
   :hover {
-    border-color: ${({theme}) => theme.colors.main};
     transform: scale(1.03);
   } 
 `;

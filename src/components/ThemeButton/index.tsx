@@ -1,12 +1,8 @@
 import { Container, MoonIcon, SunIcon } from "./styles";
-
-
 interface ThemeButtonProps {
   theme: boolean;
   changeTheme: () => void;
 }
-
-
 
 export function ThemeButton({
   theme,
@@ -18,7 +14,6 @@ export function ThemeButton({
       type="button" 
       onClick={changeTheme}
     >
-
       {
         theme ? (
           <SunIcon />

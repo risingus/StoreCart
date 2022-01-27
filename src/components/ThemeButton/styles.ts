@@ -10,14 +10,10 @@ export const Container = styled.button`
   cursor: pointer;
   background: transparent;
   border-color: transparent;
-  border-width: 2px;
-  border-radius: 50%;
-  border-style: solid;
-  height: 3rem;
-  width: 3rem;
+  transition: linear .2s;
   
   :hover {
-    border-color: white;
+    transform: scale(1.2);
   }
   
 `
@@ -29,6 +25,6 @@ export const SunIcon = styled(MdWbSunny)`
 
 
 export const MoonIcon = styled(BsFillMoonStarsFill)`
-  font-size: 1.3rem;
+  font-size: 2rem;
   color: ${({theme}) => theme.colors.main_light};
 `;

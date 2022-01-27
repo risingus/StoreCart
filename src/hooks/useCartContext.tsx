@@ -7,23 +7,47 @@ import React, {
 } from 'react'
 import { api } from '../services/api';
 
+interface ProductProps {
+  category: string,
+  description: string,
+  id: number,
+  image: string,
+  title: string,
+  price: number,
+  quantity?: number,
+  rating: {
+    rate: number,
+    count: number
+  }
+}
 interface ContextProps {
-  cartProducts: any;
+  cart: Array<ProductProps>;
+  addOnCart: () => void;
+  removeOfCart: () => void;
 }
-
 interface ContextContainerProps {
-  children: ReactElement
+  children: ReactElement;
 }
 
-const CartContext = createContext<ContextProps | null>(null);
+const CartContext = createContext<ContextProps>({} as ContextProps);
 
 export function CartContextProvider({children}: ContextContainerProps) {
-  const [cartProducts, setCartProducts] = useState([])
+  const [cart, setCart] = useState<ProductProps[]>([]);
+
+  function addOnCart() {
+
+  }
+
+  function removeOfCart() {
+
+  }
  
   return (
     <CartContext.Provider
       value={{
-        cartProducts
+        cart,
+        addOnCart,
+        removeOfCart
       }}
     >
       {children}

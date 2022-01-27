@@ -8,6 +8,7 @@ import { Cart } from './pages/Cart';
 import { NotFound } from './pages/NotFound';
 import { ProductDetails } from './pages/ProductDetails';
 import { Store } from './pages/Store';
+import { CartContextProvider } from './hooks/useCartContext';
 
 function App() {
   const [isLightTheme, setIsLightTheme] = useState(true);
@@ -29,18 +30,20 @@ function App() {
   }, [])
   
   return (
-      <ThemeProvider theme={isLightTheme ? light : dark}>
-        <Header changeTheme={changeTheme} isLightTheme={isLightTheme} />
-        <GlobalStyle />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Store />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/details:id" element={<ProductDetails />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </ThemeProvider>
+    <BrowserRouter>
+      <CartContextProvider>
+        <ThemeProvider theme={isLightTheme ? light : dark}>
+            <Header changeTheme={changeTheme} isLightTheme={isLightTheme} />
+            <GlobalStyle />
+            <Routes>
+              <Route path="/" element={<Store />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/details:id" element={<ProductDetails />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </ThemeProvider>
+      </CartContextProvider>
+    </BrowserRouter>
   )
 }
 

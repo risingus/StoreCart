@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
+import { Error } from '../../components/Error';
 import { ProductCard } from '../../components/ProductCard';
+import { StoreCartSkeleton } from '../../components/StoreCardSkeleton';
 import { api } from '../../services/api';
 import { Container } from './styles';
-
 interface ProductProps {
   category: string,
   description: string,
@@ -16,21 +17,25 @@ interface ProductProps {
   }
 }
 
+// created this const to render the skeleton multiple times
+const skeletonArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ];
 
 export function Store() {
   const [products, setProducts] = useState<ProductProps[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   function getProducts() {
     setIsLoading(true);
     api.get('/products')
       .then((response) => {
-        setProducts(response.data) 
-        console.log(response.data)
+        setProducts(response.data)
+        setIsError(false);
       })
-      .catch((err) => console.log(err))
+      .catch(() => setIsError(true))
       .finally(() => setIsLoading(false))
   }
+  
   useEffect(() => {
     getProducts();
   }, [])
@@ -38,7 +43,11 @@ export function Store() {
   return (
     <Container>
       {
-        products.map((product) => <ProductCard product={product} key={product.id} />)
+        isLoading ? skeletonArray.map((_, index) => <StoreCartSkeleton key={index} />) : !isError ? (
+          products.map((product) => <ProductCard product={product} key={product.id} />)
+        ) : (
+          <Error />
+        )
       }
     </Container>
   )
