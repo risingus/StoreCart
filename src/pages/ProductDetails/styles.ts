@@ -66,6 +66,7 @@ export const BuyButton = styled.button`
   background: ${({theme}) => theme.colors.success};
   font-family: ${({theme}) => theme.fonts.bold};
   color: ${({theme}) => theme.colors.main_light};
+  font-size: 1.4rem;
   border: none;
   padding: 2rem;
   

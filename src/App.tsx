@@ -1,5 +1,5 @@
-import {useState, useEffect} from 'react';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from './styles/globalTheme';
 import { light, dark } from './styles/theme';
@@ -14,7 +14,7 @@ function App() {
   const [isLightTheme, setIsLightTheme] = useState(true);
 
   function changeTheme() {
-    localStorage.setItem('ggStore:theme', JSON.stringify({theme: !isLightTheme}))
+    localStorage.setItem('ggStore:theme', JSON.stringify({ theme: !isLightTheme }))
     setIsLightTheme(!isLightTheme);
   }
 
@@ -28,11 +28,12 @@ function App() {
   useEffect(() => {
     getStoredTheme()
   }, [])
-  
+
   return (
     <BrowserRouter>
-      <CartContextProvider>
-        <ThemeProvider theme={isLightTheme ? light : dark}>
+      <ThemeProvider theme={isLightTheme ? light : dark}>
+        <CartContextProvider>
+          <>
             <Header changeTheme={changeTheme} isLightTheme={isLightTheme} />
             <GlobalStyle />
             <Routes>
@@ -41,8 +42,9 @@ function App() {
               <Route path="/details:id" element={<ProductDetails />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
-          </ThemeProvider>
-      </CartContextProvider>
+          </>
+        </CartContextProvider>
+      </ThemeProvider>
     </BrowserRouter>
   )
 }

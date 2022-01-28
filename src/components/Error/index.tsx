@@ -1,4 +1,5 @@
 import { Container, CustomImg, TitleError } from "./styles";
+import errorImage from '../../assets/img/error.svg';
 
 interface ErrorProps {
   message?: string;
@@ -12,7 +13,7 @@ export function Error({message = 'Sorry, something went wrong'}: ErrorProps) {
       <TitleError>
         {message}
       </TitleError>
-      <CustomImg src="assets/img/error.svg"  alt="Something went wrong"/>
+      <CustomImg src={errorImage} alt="Something went wrong"/>
     </Container>
   )
 }

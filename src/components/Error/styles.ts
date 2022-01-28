@@ -9,7 +9,7 @@ export const Container = styled.div`
 `;
 
 export const TitleError = styled.span`
-  font-family: ${({theme}) => theme.fonts.bold};
+  font-family: ${({theme}) => theme.fonts.error};
   font-size: 2.5vw;
   text-align: center;
 

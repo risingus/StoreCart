@@ -11,7 +11,6 @@ export function StoreCartSkeleton() {
       baseColor="#aeaeae"
       highlightColor={`${lighten(0.1, '#aeaeae')}`}
     >
-
       <Container>
         <ProductImg>
           <Skeleton height="100%" width="100%" />

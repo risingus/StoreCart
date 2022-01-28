@@ -1,3 +1,4 @@
+import { Error } from '../../components/Error';
 import { Container } from './styles';
 
 
@@ -5,9 +6,7 @@ export function NotFound() {
 
   return (
     <Container>
-
-      <h1>not found 404</h1>
-
+      <Error message='Sorry, page not found' />
     </Container>
   )
 }

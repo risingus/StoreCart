@@ -1,21 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams  } from 'react-router-dom';
 import { ProductDetailSkeleton } from '../../components/ProductDetailSkeleton';
-import { useCartContext } from '../../hooks/useCartContext';
+import { ProductProps, useCartContext } from '../../hooks/useCartContext';
 import { api } from '../../services/api';
 import { BuyButton, Container, Description, InfoContainer, Price, ProductImg, Title } from './styles';
-interface ProductProps {
-  category: string,
-  description: string,
-  id: number,
-  image: string,
-  title: string,
-  price: number,
-  rating: {
-    rate: number,
-    count: number
-  }
-}
+
 
 interface StateLocationProps {
   state: ProductProps
@@ -73,7 +62,7 @@ export function ProductDetails() {
           type='button'
           onClick={buyProduct}
         >
-          Buy
+          Add to cart
         </BuyButton>
       </InfoContainer>
     </Container>

@@ -2,20 +2,9 @@ import { useEffect, useState } from 'react';
 import { Error } from '../../components/Error';
 import { ProductCard } from '../../components/ProductCard';
 import { StoreCartSkeleton } from '../../components/StoreCardSkeleton';
+import { ProductProps } from '../../hooks/useCartContext';
 import { api } from '../../services/api';
 import { Container } from './styles';
-interface ProductProps {
-  category: string,
-  description: string,
-  id: number,
-  image: string,
-  title: string,
-  price: number,
-  rating: {
-    rate: number,
-    count: number
-  }
-}
 
 // created this const to render the skeleton multiple times
 const skeletonArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ];

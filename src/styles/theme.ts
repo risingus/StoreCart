@@ -1,5 +1,5 @@
-
 export const light = {
+  theme: 'light',
   colors: {
     header: '#1b1b1f',
     background_primary: '#f4f5f6',
@@ -15,11 +15,13 @@ export const light = {
     regular: 'Roboto',
     mid: 'RobotoMid',
     bold: 'RobotoBold',
-    brand: 'Brand'
+    brand: 'Brand',
+    error: 'Error'
   }
 }
 
 export const dark = {
+  theme: 'dark',
   colors: {
     header: '#1b1b1f',
     background_primary: '#f4f5f6',
@@ -35,7 +37,8 @@ export const dark = {
     regular: 'Roboto',
     mid: 'RobotoMid',
     bold: 'RobotoBold',
-    brand: 'Brand'
+    brand: 'Brand',
+    error: 'Error'
   }
 }
 
