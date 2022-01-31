@@ -15,7 +15,6 @@ export const Container = styled.button`
   :hover {
     transform: scale(1.2);
   }
-  
 `
 
 export const SunIcon = styled(MdWbSunny)`

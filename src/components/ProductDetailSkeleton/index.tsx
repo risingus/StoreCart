@@ -1,8 +1,15 @@
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { lighten } from "polished";
 import "react-loading-skeleton/dist/skeleton.css";
-import { BuyButton, Container, Description, InfoContainer, Price, ProductImg, Title } from "./styles";
-
+import { 
+  BuyButton,
+  Container,
+  Description,
+  InfoContainer,
+  Price,
+  ProductImg,
+  Title
+} from "./styles";
 
 export function ProductDetailSkeleton() {
 

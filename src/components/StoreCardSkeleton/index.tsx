@@ -1,7 +1,13 @@
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { lighten } from "polished";
 import "react-loading-skeleton/dist/skeleton.css";
-import { Container, InfoContainer, ProductImg, ProductPrice, ProductTitle } from "./styles";
+import { 
+  Container,
+  InfoContainer,
+  ProductImg,
+  ProductPrice,
+  ProductTitle
+} from "./styles";
 
 
 export function StoreCartSkeleton() {

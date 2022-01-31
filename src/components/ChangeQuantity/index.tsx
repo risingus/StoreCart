@@ -1,11 +1,15 @@
-import { Container, MinusIcon, PlusIcon, QuantityButton, Value } from "./styles";
-
+import { 
+  Container,
+  MinusIcon,
+  PlusIcon,
+  QuantityButton,
+  Value
+} from "./styles";
 
 interface ChangeQuantityProps {
   quantity: number | undefined;
   handleQuantity: (arg: string) => void;
 }
-
 
 export function ChangeQuantity({quantity, handleQuantity}: ChangeQuantityProps) {
 

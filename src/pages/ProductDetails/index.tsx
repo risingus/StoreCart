@@ -1,9 +1,20 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useParams  } from 'react-router-dom';
+import { 
+  useLocation,
+  useNavigate,
+  useParams
+} from 'react-router-dom';
 import { ProductDetailSkeleton } from '../../components/ProductDetailSkeleton';
 import { ProductProps, useCartContext } from '../../hooks/useCartContext';
 import { api } from '../../services/api';
-import { BuyButton, Container, Description, InfoContainer, Price, ProductImg, Title } from './styles';
+import { BuyButton,
+  Container,
+  Description,
+  InfoContainer,
+  Price,
+  ProductImg,
+  Title
+} from './styles';
 
 
 interface StateLocationProps {

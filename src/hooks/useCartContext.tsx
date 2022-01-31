@@ -8,6 +8,7 @@ import React, {
 import { useTheme } from 'styled-components';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { api } from '../services/api';
 
 export interface ProductProps {
   category: string,
@@ -29,6 +30,9 @@ interface ContextProps {
   handleCart: (arg: ProductProps, other: string) => void;
   total: number;
   buy: () => void;
+  products: Array<ProductProps>;
+  isLoading: boolean;
+  isError: boolean;
 }
 interface ContextContainerProps {
   children: ReactElement;
@@ -38,8 +42,22 @@ const CartContext = createContext<ContextProps>({} as ContextProps);
 
 export function CartContextProvider({children}: ContextContainerProps) {
   const [cart, setCart] = useState<ProductProps[]>([]);
+  const [products, setProducts] = useState<ProductProps[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [total, setTotal] = useState(0);
   const theme = useTheme()
+
+  function getProducts() {
+    setIsLoading(true);
+    api.get('/products')
+      .then((response) => {
+        setProducts(response.data)
+        setIsError(false);
+      })
+      .catch(() => setIsError(true))
+      .finally(() => setIsLoading(false))
+  }
 
   function sortCartList(a: ProductProps, b: ProductProps) {
     if (a.id > b.id) return 1;
@@ -58,9 +76,9 @@ export function CartContextProvider({children}: ContextContainerProps) {
       })
      return
     }
-
+    product.price = Number(product.price.toFixed(2))
     product.quantity = 1;
-    product.total = product.price;
+    product.total = Number(product.price.toFixed(2));
     const cartArray = [...cart, product];
 
     cartArray.sort(sortCartList);
@@ -83,7 +101,7 @@ export function CartContextProvider({children}: ContextContainerProps) {
     if (operation === 'minus' && product.quantity > 1) {
       const newQuantity = product.quantity - 1;
       product.quantity = newQuantity;
-      product.total = product.price * product.quantity;
+      product.total = Number((product.price * newQuantity).toFixed(2));
 
       const newCart = [...newProductList, product];
       newCart.sort(sortCartList);
@@ -99,7 +117,7 @@ export function CartContextProvider({children}: ContextContainerProps) {
 
     const newQuantity = product.quantity + 1;
     product.quantity = newQuantity;
-    product.total = product.price * product.quantity;
+    product.total = Number((product.price * newQuantity).toFixed(2));
     const newCart = [...newProductList, product]
 
     newCart.sort(sortCartList);
@@ -137,6 +155,10 @@ export function CartContextProvider({children}: ContextContainerProps) {
 
     getCartTotal();
   }, [cart])
+
+  useEffect(() => {
+    getProducts();
+  }, [])
  
   return (
     <CartContext.Provider
@@ -145,7 +167,10 @@ export function CartContextProvider({children}: ContextContainerProps) {
         addOnCart,
         handleCart,
         total,
-        buy
+        buy,
+        products,
+        isLoading,
+        isError
       }}
     >
       <ToastContainer />
