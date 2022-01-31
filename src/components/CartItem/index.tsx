@@ -1,14 +1,28 @@
 import { useNavigate } from "react-router-dom";
 import { ProductProps, useCartContext } from "../../hooks/useCartContext";
 import { ChangeQuantity } from "../ChangeQuantity";
-import { CodText, Container, InStockText, PriceContainer, PriceText, ProdContainer, ProdDetailContainer, ProdImg, ProdInfoContainer, ProdTitle, QuantityContainer, Title, TitleContainer } from "./styles";
+import {
+  CodText,
+  Container,
+  InStockText,
+  PriceContainer,
+  PriceText,
+  ProdContainer,
+  ProdDetailContainer,
+  ProdImg,
+  ProdInfoContainer,
+  ProdTitle,
+  QuantityContainer,
+  Title,
+  TitleContainer,
+} from "./styles";
 
 interface CartItemProps {
-  product: ProductProps
+  product: ProductProps;
 }
 
-export function CartItem({product}: CartItemProps) {
-  const {handleCart} = useCartContext();
+export function CartItem({ product }: CartItemProps) {
+  const { handleCart } = useCartContext();
   const navigate = useNavigate();
 
   function changeQuantity(type: string) {
@@ -17,7 +31,6 @@ export function CartItem({product}: CartItemProps) {
 
   return (
     <Container>
-
       <ProdContainer>
         <TitleContainer>
           <Title>Product</Title>
@@ -27,16 +40,11 @@ export function CartItem({product}: CartItemProps) {
           <ProdImg src={product.image} alt={product.title} />
 
           <ProdInfoContainer>
-            <ProdTitle 
-              onClick={() => navigate(`/details${product.id}`, {state: product})}
-            >
-              {product.title}
-            </ProdTitle>
+            <ProdTitle onClick={() => navigate(`/details${product.id}`, { state: product })}>{product.title}</ProdTitle>
             <InStockText>In stock</InStockText>
             <CodText>{product.id && `Code: ${product.id}`}</CodText>
           </ProdInfoContainer>
         </ProdDetailContainer>
-
       </ProdContainer>
 
       <QuantityContainer>
@@ -44,13 +52,8 @@ export function CartItem({product}: CartItemProps) {
           <Title>Quantity</Title>
         </TitleContainer>
 
-        <ChangeQuantity 
-          quantity={product.quantity}
-          handleQuantity={changeQuantity}
-        />
-
+        <ChangeQuantity quantity={product.quantity} handleQuantity={changeQuantity} />
       </QuantityContainer>
-
 
       <PriceContainer>
         <TitleContainer>
@@ -59,5 +62,5 @@ export function CartItem({product}: CartItemProps) {
         <PriceText>{product.total && `R$ ${product.total}`}</PriceText>
       </PriceContainer>
     </Container>
-  )
+  );
 }

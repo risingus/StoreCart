@@ -23,6 +23,7 @@ export const Container = styled.div`
 
 export const ProductImg = styled.img`
   width: 25%;
+  object-fit: contain;
 
   @media (max-width: 840px) {
     width: 40%;

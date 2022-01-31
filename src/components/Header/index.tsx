@@ -3,7 +3,6 @@ import { useCartContext } from "../../hooks/useCartContext";
 import { CartButton } from "../CartButton";
 import { HomeButton } from "../HomeButton";
 import { ThemeButton } from "../ThemeButton";
-
 import { ActionsContainer, BrandTitle, Container } from "./styles";
 interface HeaderProps {
   changeTheme: () => void;

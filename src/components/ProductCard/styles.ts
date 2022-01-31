@@ -17,6 +17,7 @@ export const Container = styled.div`
 export const ProductImg = styled.img`
   width: 40%;
   aspect-ratio: 1 / 1;
+  object-fit: contain;
 
   @media (min-width: 672px) {
     width: 60%;

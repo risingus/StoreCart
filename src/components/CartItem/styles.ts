@@ -35,6 +35,7 @@ export const ProdInfoContainer = styled.div`
 
 export const ProdImg = styled.img`
   width: 5rem;
+  object-fit: contain;
 
   @media (max-width: 860px) {
     width: 4rem;
