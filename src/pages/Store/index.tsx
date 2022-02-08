@@ -14,7 +14,7 @@ export function Store() {
     <Container>
       {
         isLoading ? skeletonArray.map((_, index) => <StoreCartSkeleton key={index} />) : !isError ? (
-          products.map((product) => <ProductCard product={product} key={product.id} />)
+          products && products.map((product) => <ProductCard product={product} key={product.id} />)
         ) : (
           <Error />
         )

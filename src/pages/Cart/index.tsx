@@ -25,10 +25,18 @@ export function Cart() {
     navigate('/')
   }
 
-
-  if (cart.length >= 1) {
+  if (!cart || cart.length === 0) {
     return (
-      <Container>
+      <TextContainer>
+        <EmptyCartText>
+          Your 🛒 is empty
+        </EmptyCartText>
+      </TextContainer>
+    )
+  }
+
+  return (
+    <Container>
         {
           cart.map((product) => (
             <CartItem
@@ -49,14 +57,5 @@ export function Cart() {
       </EndCart>
 
       </Container>
-    )
-  }
-
-  return (
-    <TextContainer>
-      <EmptyCartText>
-        Your 🛒 is empty
-      </EmptyCartText>
-    </TextContainer>
   )
 }
