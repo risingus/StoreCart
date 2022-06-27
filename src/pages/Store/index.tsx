@@ -5,7 +5,7 @@ import { useCartContext } from '../../hooks/useCartContext';
 import { Container } from './styles';
 
 // created this const to render the skeleton multiple times
-const skeletonArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ];
+const skeletonArray = new Array(16);
 
 export function Store() {
   const {products, isLoading, isError} = useCartContext();

@@ -1,11 +1,10 @@
-import React, {
+import {
   createContext,
   useState,
   useContext,
   ReactElement,
   useEffect,
 } from 'react';
-import { useTheme } from 'styled-components';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { api } from '../services/api';
@@ -46,18 +45,7 @@ export function CartContextProvider({children}: ContextContainerProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [total, setTotal] = useState(0);
-  const theme = useTheme()
 
-  function getProducts() {
-    setIsLoading(true);
-    api.get('/products')
-      .then((response) => {
-        setProducts(response.data)
-        setIsError(false);
-      })
-      .catch(() => setIsError(true))
-      .finally(() => setIsLoading(false))
-  }
 
   function sortCartList(a: ProductProps, b: ProductProps) {
     if (a.id > b.id) return 1;
@@ -71,15 +59,20 @@ export function CartContextProvider({children}: ContextContainerProps) {
     if(isInList) {
       toast.info('Product alredy in cart', {
         position: toast.POSITION.TOP_CENTER,
-        theme: theme.theme ===  'dark' ? 'dark' : 'light',
+        theme: 'light',
         autoClose: 2000
       })
      return
     }
-    product.price = Number(product.price.toFixed(2))
-    product.quantity = 1;
-    product.total = Number(product.price.toFixed(2));
-    const cartArray = [...cart, product];
+
+    const prod = {
+      ...product,
+      price: Number(product.price.toFixed(2)),
+      quantity: 1,
+      total: Number(product.price.toFixed(2))
+    };
+
+    const cartArray = [...cart, prod];
 
     cartArray.sort(sortCartList);
 
@@ -87,9 +80,9 @@ export function CartContextProvider({children}: ContextContainerProps) {
     toast.success('Product Added to your cart!', {
       position: toast.POSITION.TOP_CENTER,
       icon: '😄',
-      theme: theme.theme ===  'dark' ? 'dark' : 'light',
+      theme: 'light',
       autoClose: 2000
-    })
+    });
   }
 
   function handleCart(product: ProductProps, operation: string) {
@@ -100,10 +93,14 @@ export function CartContextProvider({children}: ContextContainerProps) {
 
     if (operation === 'minus' && product.quantity > 1) {
       const newQuantity = product.quantity - 1;
-      product.quantity = newQuantity;
-      product.total = Number((product.price * newQuantity).toFixed(2));
 
-      const newCart = [...newProductList, product];
+      const prod = {
+        ...product,
+        quantity: newQuantity,
+        total: Number((product.price * newQuantity).toFixed(2))
+      };
+
+      const newCart = [...newProductList, prod];
       newCart.sort(sortCartList);
 
       setCart(newCart);
@@ -116,9 +113,14 @@ export function CartContextProvider({children}: ContextContainerProps) {
     }
 
     const newQuantity = product.quantity + 1;
-    product.quantity = newQuantity;
-    product.total = Number((product.price * newQuantity).toFixed(2));
-    const newCart = [...newProductList, product]
+
+    const prod = {
+      ...product,
+      qunatity: newQuantity,
+      total: Number((product.price * newQuantity).toFixed(2))
+    };
+    
+    const newCart = [...newProductList, prod]
 
     newCart.sort(sortCartList);
 
@@ -129,7 +131,7 @@ export function CartContextProvider({children}: ContextContainerProps) {
     toast.success('Thanks for your acquisition!', {
       position: toast.POSITION.TOP_CENTER,
       icon: '🎉',
-      theme: theme.theme ===  'dark' ? 'dark' : 'light',
+      theme: 'light',
       autoClose: 2000
     })
 
@@ -140,6 +142,7 @@ export function CartContextProvider({children}: ContextContainerProps) {
   }
 
   useEffect(() => {
+
     function getCartTotal() {
       const {cartTotal} = cart.reduce((acc: any, accumulator) => {
         if (accumulator.total) {
@@ -157,6 +160,18 @@ export function CartContextProvider({children}: ContextContainerProps) {
   }, [cart])
 
   useEffect(() => {
+
+    function getProducts() {
+      setIsLoading(true);
+      api.get('/products')
+        .then((response) => {
+          setProducts(response.data)
+          setIsError(false);
+        })
+        .catch(() => setIsError(true))
+        .finally(() => setIsLoading(false))
+    }
+
     getProducts();
   }, [])
  
