@@ -12,28 +12,21 @@ import {
 
 export function StoreCartSkeleton() {
   return (
+		<SkeletonTheme baseColor="#aeaeae" highlightColor={`${lighten(0.1, '#aeaeae')}`}>
+			<Container>
+				<ProductImg>
+					<Skeleton height="100%" width="100%" />
+				</ProductImg>
 
-    <SkeletonTheme
-      baseColor="#aeaeae"
-      highlightColor={`${lighten(0.1, '#aeaeae')}`}
-    >
-      <Container>
-        <ProductImg>
-          <Skeleton height="100%" width="100%" />
-        </ProductImg>
-
-      <InfoContainer>
-        <ProductTitle>
-          <Skeleton height="100%" width="100%" />
-        </ProductTitle>
-        <ProductPrice>
-          <Skeleton height="100%" width="100%" />
-        </ProductPrice>
-      </InfoContainer>
-      </Container>
-
-
-    </SkeletonTheme>
-   
-  )
+				<InfoContainer>
+					<ProductTitle>
+						<Skeleton height="100%" width="100%" />
+					</ProductTitle>
+					<ProductPrice>
+						<Skeleton height="100%" width="100%" />
+					</ProductPrice>
+				</InfoContainer>
+			</Container>
+		</SkeletonTheme>
+	);
 }
